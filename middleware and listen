@@ -1,0 +1,14 @@
+const express =require('express');
+
+const node1 =express();
+node1.use((req,res,next)=>{
+    console.log('In the middleware')
+    next();
+});
+node1.use((req,res,next)=>{
+    console.log('In another middleware');
+    res.send('<h1>Hello</h1>');
+    
+});
+node1.listen(3000);
+
