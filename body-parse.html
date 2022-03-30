@@ -1,0 +1,26 @@
+const express =require('express');
+
+const bodyParser = require('body-parser');
+
+const node1 =express();
+
+node1.use(bodyParser.urlencoded({extented:false}));
+
+
+node1.use('/add-product',(req,res,next)=>{
+    res.send('<form action="/product" method ="POST"><input type="text" name="title"><button type="submit">Add Product</button></form>');
+    
+});
+
+node1.post('/product',(req,res,next)=>{
+    console.log(req.body);
+    res.redirect('/');
+
+});
+
+node1.use('/',(req,res,next)=>{
+    //console.log('In another middleware');
+    res.send('<h1>Hello to nodes js</h1>');
+    
+});
+node1.listen(3000);
