@@ -1,0 +1,18 @@
+const express =require('express');
+
+const bodyParser = require('body-parser');
+
+const node1 =express();
+
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop')
+node1.use(bodyParser.urlencoded({extented:false}));
+
+node1.use(adminRoutes);
+node1.use(shopRoutes);
+
+node1.use((req,res,next)=>{
+    res.status(404).send('<h1>Page not found</h1>')
+})
+
+node1.listen(3000);
